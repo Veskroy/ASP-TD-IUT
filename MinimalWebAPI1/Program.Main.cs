@@ -1,3 +1,6 @@
+using System.Net.Mime;
+using System.Text;
+
 namespace MinimalWebAPI1
 {
     public class Program
@@ -23,6 +26,32 @@ namespace MinimalWebAPI1
 
 
         public static void HealthCkeck()
-        {  }
+        { throw new Exception("Une erreur est survenue"); }
+        
+        public static IResult RetournerUneChaine()
+        { return Results.Text("Bonjour,Minimal API en .NetCore"); }
+
+        static public Task RetournerUneChaineDeCaractèreUtf8(HttpContext httpContext)
+        {
+            string uneChaineDeCaractèreUtf8 = "Une chaine de caractère UTF8";
+            UTF8Encoding utf8 = new UTF8Encoding();
+            httpContext.Response.StatusCode = 200;
+            httpContext.Response.ContentType = MediaTypeNames.Text.Plain;
+            httpContext.Response.ContentLength = Encoding.UTF8.GetByteCount(uneChaineDeCaractèreUtf8);
+            return httpContext.Response.WriteAsync(uneChaineDeCaractèreUtf8, UTF8Encoding.UTF8) ;
+        }
+        public class  UnObjectDeRetour
+        {
+            public  int Code { get; set; }
+            public string Message { get; set; }
+            public string Criticité {get; set; }
+
+            public static IResult RetournerUnObjetJson()
+            {
+                UnObjectDeRetour unObject = new UnObjectDeRetour()
+                { Code = 45, Message = "Traitement effectué", Criticité = "Elevée" };
+                return Results.Json(unObject);
+            }
+        }
     }
 }
