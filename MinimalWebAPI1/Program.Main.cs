@@ -59,5 +59,10 @@ namespace MinimalWebAPI1
             return Results.Text($"Le double de {unNombre} est " + (unNombre * 2).ToString());
         }
 
+        public static IResult RetournerDivision(float dividende,float diviseur)
+        {
+            return Results.Text($" {dividende}/{diviseur} = " + (dividende/diviseur).ToString());
+        }
+
     }
 }
