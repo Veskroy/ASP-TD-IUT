@@ -46,12 +46,18 @@ namespace MinimalWebAPI1
             public string Message { get; set; }
             public string Criticité {get; set; }
 
-            public static IResult RetournerUnObjetJson()
+            public static IResult RetournerUnObjectJson()
             {
                 UnObjectDeRetour unObject = new UnObjectDeRetour()
                 { Code = 45, Message = "Traitement effectué", Criticité = "Elevée" };
                 return Results.Json(unObject);
             }
+
         }
+        public static IResult RetourneLeDouble(int unNombre)
+        {
+            return Results.Text($"Le double de {unNombre} est " + (unNombre * 2).ToString());
+        }
+
     }
 }

@@ -26,6 +26,10 @@ app.MapGet("/weatherforecast", () =>
 
 app.MapGet("/HealthCkeck", MinimalWebAPI1.Program.HealthCkeck);
 
+app.MapGet("/UnObjectJson", MinimalWebAPI1.Program.UnObjectDeRetour.RetournerUnObjectJson);
+
+app.MapGet("/CalculDouble/{unNombre}", MinimalWebAPI1.Program.RetourneLeDouble);
+
 app.Run();
 
 internal record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
