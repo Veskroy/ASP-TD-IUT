@@ -63,6 +63,13 @@ namespace MinimalWebAPI1
         {
             return Results.Text($" {dividende}/{diviseur} = " + (dividende/diviseur).ToString());
         }
-
+        /*
+        public static IResult TraitementAvecBeaucoupDeParamètres(HttpRequest request)
+        {
+            var id = request.RouteValues["id"];
+            var page= request.Query["page"];
+            var customHeader = request.Headers["X-CUSTOM-HEADER"];
+        }
+        */
     }
 }
