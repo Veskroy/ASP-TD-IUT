@@ -4,6 +4,7 @@ using System.Diagnostics;
 
 namespace MonApplicationWebMVC.Controllers
 {
+    // CHEMIN Home/
     public class HomeController : Controller
     {
         // private readonly ILogger<HomeController> _logger;
@@ -79,6 +80,27 @@ namespace MonApplicationWebMVC.Controllers
             string filePath = Path.Combine(_webHostEnvironment.WebRootPath, fileName);
             FileStream fs = System.IO.File.OpenRead(filePath);
             return File(fs, "application/octet-stream", fileName);
+        }
+
+        [HttpGet]
+        public ContentResult RetournerPageDynamique()
+        {
+            string htmlString = "<!DOCTYPE html>" +
+                                "<html>" +
+                                    "<head>" +
+                                        "<meta charset = \"utf-8\" />" +
+                                    "</head>" +
+                                    "<body>"+
+                                "Les 10 premier entiers pair sont:";
+                                    
+            for (int i = 1; i <= 10; i++)
+            { htmlString+="</br>"+(i * 2); }
+
+              htmlString+="</body>" +
+                                "</html>";
+
+            return Content(htmlString, "text/html");
+
         }
    
     }
