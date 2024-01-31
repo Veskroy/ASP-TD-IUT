@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MonApplicationWebMVC.Models;
 using System.Diagnostics;
+using System.Text;
 
 namespace MonApplicationWebMVC.Controllers
 {
@@ -85,7 +86,7 @@ namespace MonApplicationWebMVC.Controllers
         [HttpGet]
         public ContentResult RetournerPageDynamique()
         {
-            string htmlString = "<!DOCTYPE html>" +
+            /*string htmlString = "<!DOCTYPE html>" +
                                 "<html>" +
                                     "<head>" +
                                         "<meta charset = \"utf-8\" />" +
@@ -97,9 +98,23 @@ namespace MonApplicationWebMVC.Controllers
             { htmlString+="</br>"+(i * 2); }
 
               htmlString+="</body>" +
-                                "</html>";
+                                "</html>";*/
 
-            return Content(htmlString, "text/html");
+            StringBuilder sb= new StringBuilder();
+            sb.Append("<!DOCTYPE html>");
+            sb.Append("<html>");
+            sb.Append("<head>");
+            sb.Append("<meta charset = \"utf-8\" />");
+            sb.Append("</head>");
+            sb.Append("<body>");
+            sb.Append("Les 10 premier entiers pair sont:");
+            for (int i = 1; i <= 10; i++)
+            {sb.Append("</br>" + (i * 2)); }
+            sb.Append("</body>");
+            sb.Append("</html>");
+
+
+            return Content(sb.ToString(), "text/html");
 
         }
    
