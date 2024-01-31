@@ -33,6 +33,7 @@ app.MapGet("/CalculDouble/{unNombre}", MinimalWebAPI1.Program.RetourneLeDouble);
 app.MapGet("/Divise", MinimalWebAPI1.Program.RetournerDivision);
 /* -http://localhost:5299/Divise?dividende=20.8&diviseur=4.2- */
 
+
 app.Run();
 
 internal record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)

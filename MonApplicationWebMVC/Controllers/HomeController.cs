@@ -6,11 +6,16 @@ namespace MonApplicationWebMVC.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        // private readonly ILogger<HomeController> _logger;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public HomeController(ILogger<HomeController> logger)
+        /*public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+        }*/
+        public HomeController(IWebHostEnvironment webHostEnvironment)
+        {
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -67,7 +72,15 @@ namespace MonApplicationWebMVC.Controllers
             return Content($" Le resultat de la division de {dividende} par {diviseur} est " + (dividende / diviseur).ToString());
         }
 
-
+        [HttpGet]
+        public FileStreamResult RetournerUnFichier()
+        {
+            string fileName = "Text.txt";
+            string filePath = Path.Combine(_webHostEnvironment.WebRootPath, fileName);
+            FileStream fs = System.IO.File.OpenRead(filePath);
+            return File(fs, "application/octet-stream", fileName);
+        }
+   
     }
 
   
