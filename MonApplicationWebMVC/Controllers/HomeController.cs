@@ -117,6 +117,9 @@ namespace MonApplicationWebMVC.Controllers
             return Content(sb.ToString(), "text/html");
 
         }
+        [HttpGet]
+        public ViewResult RetournerUneVue()
+        { return View(); }
    
     }
 
