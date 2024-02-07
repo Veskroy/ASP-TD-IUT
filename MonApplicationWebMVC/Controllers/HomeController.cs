@@ -120,7 +120,17 @@ namespace MonApplicationWebMVC.Controllers
         [HttpGet]
         public ViewResult RetournerUneVue()
         { return View(); }
-   
+
+        [HttpGet]
+        public ViewResult VueListePays()
+        {
+            List<Pays> Toutpays = Pays.TousLesPays();
+            ViewData["Toutpays"]=Toutpays;
+            ViewBag.Toutpays=Toutpays;
+
+
+            return View(); }
+
     }
 
   
