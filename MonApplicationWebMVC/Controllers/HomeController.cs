@@ -122,14 +122,20 @@ namespace MonApplicationWebMVC.Controllers
         { return View(); }
 
         [HttpGet]
-        public ViewResult VueListePays()
+        public ViewResult VueListePays(/*Pays instanceDePays*/)
         {
-            List<Pays> Toutpays = Pays.TousLesPays();
+            /*List<Pays> Toutpays = Pays.TousLesPays();
             ViewData["Toutpays"]=Toutpays;
             ViewBag.Toutpays=Toutpays;
+            */
+            Pays instanceDePays= new Pays();
 
+            return View("VueListePays", instanceDePays);
+                }
+        [HttpGet]
+        public ViewResult VueAjouterPays()
+        { return View(); }
 
-            return View(); }
 
         [HttpGet]
         public ActionResult MonFormulaire()
@@ -141,6 +147,8 @@ namespace MonApplicationWebMVC.Controllers
         {
             return View("MonFormulaire"); /* ici vue que l'on rappele la vue creer une boucle */
         }
+
+
 
     }
 
