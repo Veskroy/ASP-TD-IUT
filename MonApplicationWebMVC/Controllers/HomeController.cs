@@ -131,6 +131,17 @@ namespace MonApplicationWebMVC.Controllers
 
             return View(); }
 
+        [HttpGet]
+        public ActionResult MonFormulaire()
+        {
+            return View("MonFormulaire");
+        }
+        [HttpPost]
+        public ActionResult MonFormulairePoste(IFormCollection form)
+        {
+            return View("MonFormulaire"); /* ici vue que l'on rappele la vue creer une boucle */
+        }
+
     }
 
   
