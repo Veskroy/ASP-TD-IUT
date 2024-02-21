@@ -120,30 +120,44 @@ namespace MonApplicationWebMVC.Controllers
         [HttpGet]
         public ViewResult RetournerUneVue()
         { return View(); }
+        /******************************************************************/
+        private readonly List<Pays> _pays = Pays.TousLesPays();
 
         [HttpGet]
-        public ViewResult VueListePays(/*Pays instanceDePays*/)
+        public ViewResult VueListePays()
         {
-            /*List<Pays> Toutpays = Pays.TousLesPays();
+            /* List<Pays> Toutpays = Pays.TousLesPays();*/
+            List<Pays> Toutpays = _pays;
             ViewData["Toutpays"]=Toutpays;
             ViewBag.Toutpays=Toutpays;
-            */
-            Pays instanceDePays= new Pays();
+           /* Static ==== c'est sur ma classe pas sur mon instance*/
 
-            return View("VueListePays", instanceDePays);
+            return View("VueListePays", Toutpays);
                 }
+
+        
+
         [HttpGet]
         public ViewResult VueAjouterPays()
-        { return View(); }
+        {
+            Pays pays = new Pays();
+            return View("VueAjouterPays", pays);
+        }
 
-
+        [HttpPost]
+        public ActionResult AjoutPaysPost(Pays model)
+        {
+            _pays.Add(model);
+            return View("VueListePays",_pays);
+        }
+        /**************************************************/
         [HttpGet]
         public ActionResult MonFormulaire()
         {
-            return View("MonFormulaire");
+            return View("MonFormulaire"); /* on encoier ver le formulaire vue */
         }
         [HttpPost]
-        public ActionResult MonFormulairePoste(IFormCollection form)
+        public ActionResult MonFormulairePoste(IFormCollection form) /*  recup les info et lance son code*/
         {
             return View("MonFormulaire"); /* ici vue que l'on rappele la vue creer une boucle */
         }

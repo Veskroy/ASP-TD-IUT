@@ -9,7 +9,7 @@
        public  string Drapeaux { get; set; }
        public  float Superficie{ get; set;}
 
-        List<Pays> Lespays=new List<Pays>();
+        
 
 
         public static List<Pays> TousLesPays()
