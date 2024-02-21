@@ -1,4 +1,5 @@
 ﻿@using MonApplicationWebMVC.Models
+@using static MonApplicationWebMVC.Models.Pays
 @{Layout ="~/Views/Shared/_Layout.cshtml";}
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -8,8 +9,17 @@
 {
     @Html.LabelFor(m=>m.Nom)
     @Html.TextBoxFor(m=>m.Nom);
+    <br />
+    @Html.DropDownListFor(m=>m.Continent,new SelectList(Enum.GetValues(typeof(list_Continent))),"Continent")
+    <br />
+    @Html.LabelFor(m=>m.Population)
+    @Html.TextAreaFor(m=>m.Population);
+    <br />
+    @Html.LabelFor(m=>m.Superficie)
+    @Html.TextBoxFor(m=>m.Superficie);
+    <br />
+    /* Html.CheckBoxFor()*/
 
-    
     <br/>
 <button type="submit">Envoyer</button>
 }

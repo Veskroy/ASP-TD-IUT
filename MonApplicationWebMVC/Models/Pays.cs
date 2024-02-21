@@ -9,7 +9,15 @@
        public  string Drapeaux { get; set; }
        public  float Superficie{ get; set;}
 
-        
+        public enum list_Continent
+        { 
+            Europe,
+            Asie,
+            Amerique_Nord,
+            Amerique_Sud,
+            Afrique,
+            Océanie
+        }
 
 
         public static List<Pays> TousLesPays()
