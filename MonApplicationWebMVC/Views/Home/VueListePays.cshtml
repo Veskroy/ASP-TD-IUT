@@ -17,7 +17,7 @@
      </thead>
 @Html.Label("Presention des pays")
 @{
-    foreach (Pays pays in @ViewData["Toutpays"] as IEnumerable<Pays>)
+    foreach (Pays pays in Model as IEnumerable<Pays>)
      {
               <tr>
                <td> @pays.Nom </td>

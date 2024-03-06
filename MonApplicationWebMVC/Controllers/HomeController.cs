@@ -128,8 +128,8 @@ namespace MonApplicationWebMVC.Controllers
         {
             /* List<Pays> Toutpays = Pays.TousLesPays();*/
             List<Pays> Toutpays = _pays;
-            ViewData["Toutpays"]=Toutpays;
-            ViewBag.Toutpays=Toutpays;
+           /* ViewData["Toutpays"]=Toutpays;
+            ViewBag.Toutpays=Toutpays;*/
            /* Static ==== c'est sur ma classe pas sur mon instance*/
 
             return View("VueListePays", Toutpays);
@@ -147,7 +147,8 @@ namespace MonApplicationWebMVC.Controllers
         [HttpPost]
         public ActionResult AjoutPaysPost(Pays model)
         {
-            _pays.Add(model);
+            Pays new_pays = new Pays { Nom = model.Nom, Superficie = model.Superficie, Continent = model.Continent, Population = model.Population, Drapeaux ="null.jpg"};
+            _pays.Add(new_pays);
             return View("VueListePays",_pays);
         }
         /**************************************************/

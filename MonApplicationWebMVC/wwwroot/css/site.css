@@ -11,10 +11,12 @@ html {
 html {
   position: relative;
   min-height: 100%;
+  
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: antiquewhite
 }
 
 table{
@@ -43,3 +45,7 @@ table{
         background-color: #04AA6D;
         color: white;
     }
+
+img{
+    width:40%;
+}
