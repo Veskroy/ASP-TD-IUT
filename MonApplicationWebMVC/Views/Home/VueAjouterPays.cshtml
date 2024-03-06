@@ -5,7 +5,12 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @model Pays
-@using(Html.BeginForm("AjoutPaysPost","Home",FormMethod.Post))
+@* using(Html.BeginForm("AjoutPaysPost","Home",FormMethod.Post))
+    donc c'est la version basique 
+    mais on peut aussi utiliser 
+    <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="InmprtExcel"
+*@
+@using (Html.BeginForm("ImportExcel","Home",FormMethod.Post, new {enctype = "multipart/form-data"}))
 {
     @Html.LabelFor(m=>m.Nom) <br/>
     @Html.TextBoxFor(m=>m.Nom);
