@@ -9,8 +9,10 @@
     donc c'est la version basique 
     mais on peut aussi utiliser 
     <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="InmprtExcel"
+    Le champ permettant de sélectionner un fichier est un <input type= «file» 
+
 *@
-@using (Html.BeginForm("ImportExcel","Home",FormMethod.Post, new {enctype = "multipart/form-data"}))
+@using(Html.BeginForm("AjoutPaysPost","Home",FormMethod.Post,new {enctype = "multipart/form-data"}))
 {
     @Html.LabelFor(m=>m.Nom) <br/>
     @Html.TextBoxFor(m=>m.Nom);
@@ -25,10 +27,16 @@
     @Html.TextBoxFor(m=>m.Superficie);
     <br />
     /* Html.CheckBoxFor()*/
-
     <br/>
-<button type="submit">Envoyer</button>
+    <input class="form-control" type="file" id="excelFile" name="excelFile" />
+    <button type="submit">Envoyer</button>
 }
+@*
+@using (Html.BeginForm("ImportExcel","Home",FormMethod.Post, new {enctype = "multipart/form-data"}))
 
-
+{
+    <input class="form-control" type="file" id="excelFile" name="excelFile" />
+    <input type="submit"> 
+}
+*@
 @Model.Nom

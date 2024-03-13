@@ -121,7 +121,7 @@ namespace MonApplicationWebMVC.Controllers
         public ViewResult RetournerUneVue()
         { return View(); }
         /******************************************************************/
-        private readonly List<Pays> _pays = Pays.TousLesPays();
+        private  List<Pays> _pays = Pays.TousLesPays();
 
         [HttpGet]
         public ViewResult VueListePays()
@@ -142,14 +142,36 @@ namespace MonApplicationWebMVC.Controllers
         {
             Pays pays = new Pays();
             return View("VueAjouterPays", pays);
+
         }
 
-       
 
         [HttpPost]
-        public ActionResult AjoutPaysPost(Pays model)
+        public IActionResult ImportExcel(IFormFile excelFile)
         {
-            Pays new_pays = new Pays { Nom = model.Nom, Superficie = model.Superficie, Continent = model.Continent, Population = model.Population, Drapeaux ="null.jpg"};
+            string filePath = Path.Combine(_webHostEnvironment.WebRootPath, "Content", excelFile.FileName);
+            using (var filestream = new FileStream(filePath, FileMode.Create))
+            {
+                excelFile.CopyTo(filestream);
+            }
+
+            return Content("Image a ajouté");
+
+
+        }
+
+        [HttpPost]
+        public ActionResult AjoutPaysPost(Pays model, IFormFile excelFile= null)
+        {
+            if (excelFile != null)
+            {
+                string filePath = Path.Combine(_webHostEnvironment.WebRootPath, "Content", excelFile.FileName);
+                using (var filestream = new FileStream(filePath, FileMode.Create))
+                {
+                    excelFile.CopyTo(filestream);
+                }
+            }
+            Pays new_pays = new Pays { Nom = model.Nom, Superficie = model.Superficie, Continent = model.Continent, Population = model.Population, Drapeaux = excelFile?.FileName ?? "null.jpg" };
             _pays.Add(new_pays);
             return View("VueListePays",_pays);
             /* il est a noter que ici le nouveaux pays n'est pas sauvegarder on feras après la meme choses mais cette fois -ci avec  un bassse de donnés.*/
