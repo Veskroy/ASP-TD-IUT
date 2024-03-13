@@ -174,6 +174,8 @@ namespace MonApplicationWebMVC.Controllers
             Pays new_pays = new Pays { Nom = model.Nom, Superficie = model.Superficie, Continent = model.Continent, Population = model.Population, Drapeaux = excelFile?.FileName ?? "null.jpg" };
             _pays.Add(new_pays);
             return View("VueListePays",_pays);
+
+
             /* il est a noter que ici le nouveaux pays n'est pas sauvegarder on feras après la meme choses mais cette fois -ci avec  un bassse de donnés.*/
         }
         /**************************************************/
