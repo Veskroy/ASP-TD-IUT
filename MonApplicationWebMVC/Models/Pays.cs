@@ -8,6 +8,7 @@
         public int Population { get; set; }
         public string Drapeaux { get; set; }
         public float Superficie { get; set; }
+        public int Id { get; set; }
 
         public IFormFile ImportDrapeau { get; set; }
 
