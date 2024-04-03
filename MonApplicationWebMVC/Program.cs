@@ -1,4 +1,8 @@
+using MonApplicationWebMVC.Data;
+using MonApplicationWebMVC.Models;
+
 namespace MonApplicationWebMVC
+
 {
     public class Program
     {
@@ -32,6 +36,8 @@ namespace MonApplicationWebMVC
             
 
             app.Run();
+
+    
         }
     }
 }

@@ -2,6 +2,7 @@
 using MonApplicationWebMVC.Models;
 using System.Diagnostics;
 using System.Text;
+using MonApplicationWebMVC.Data;
 
 namespace MonApplicationWebMVC.Controllers
 {
@@ -127,10 +128,14 @@ namespace MonApplicationWebMVC.Controllers
         public ViewResult VueListePays()
         {
             /* List<Pays> Toutpays = Pays.TousLesPays();*/
-            List<Pays> Toutpays = _pays;
-           /* ViewData["Toutpays"]=Toutpays;
+           /* List<Pays> Toutpays = _pays;*/
+           MonContextEntityFramework cef= new MonContextEntityFramework();
+            List<Pays> Toutpays = cef.Pays.ToList();
+            /* ViewData["Toutpays"]=Toutpays;
             ViewBag.Toutpays=Toutpays;*/
            /* Static ==== c'est sur ma classe pas sur mon instance*/
+
+
 
             return View("VueListePays", Toutpays);
                 }
@@ -172,8 +177,12 @@ namespace MonApplicationWebMVC.Controllers
                 }
             }
             Pays new_pays = new Pays { Nom = model.Nom, Superficie = model.Superficie, Continent = model.Continent, Population = model.Population, Drapeaux = excelFile?.FileName ?? "null.jpg" };
-            _pays.Add(new_pays);
-            return View("VueListePays",_pays);
+            MonContextEntityFramework cef = new MonContextEntityFramework();
+            // _pays.Add(new_pays);
+            cef.Pays.Add(new_pays);
+            cef.SaveChanges();
+
+            return View("VueListePays",cef.Pays.ToList());
 
 
             /* il est a noter que ici le nouveaux pays n'est pas sauvegarder on feras après la meme choses mais cette fois -ci avec  un bassse de donnés.*/
